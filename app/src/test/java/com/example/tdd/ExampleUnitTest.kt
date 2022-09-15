@@ -44,4 +44,10 @@ class ExampleUnitTest {
             assertThat(Franc(5), not(Franc(6)))
         }
     }
+
+    @Test
+    @DisplayName("화폐 구분 테스트")
+    fun testMoneyEquality(){
+        assertThat(Franc(5), not(Dollar(5)))
+    }
 }
