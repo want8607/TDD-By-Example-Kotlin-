@@ -13,16 +13,16 @@ class ExampleUnitTest {
         @Test
         @DisplayName("달러 곱셈 테스트")
         fun testMultiplication() {
-            val five: Dollar = Dollar(5)
-            assertThat(Dollar(10), `is`(five.times(2)))
-            assertThat(Dollar(15), `is`(five.times(3)))
+            val five: Money = Money.dollar(5)
+            assertThat(Money.dollar(10), `is`(five.times(2)))
+            assertThat(Money.dollar(15), `is`(five.times(3)))
         }
 
         @Test
         @DisplayName("달러 동등성 테스트")
         fun testEquality() {
-            assertThat(Dollar(5), `is`(Dollar(5)))
-            assertThat(Dollar(5), not(Dollar(6)))
+            assertThat(Money.dollar(5), `is`(Money.dollar(5)))
+            assertThat(Money.dollar(5), not(Money.dollar(6)))
         }
     }
 
@@ -32,22 +32,22 @@ class ExampleUnitTest {
         @Test
         @DisplayName("프랑 곱셈 테스트")
         fun testFrancMultiplication() {
-            val five: Franc = Franc(5)
-            assertThat(Franc(10), `is`(five.times(2)))
-            assertThat(Franc(15), `is`(five.times(3)))
+            val five: Money = Money.franc(5)
+            assertThat(Money.franc(10), `is`(five.times(2)))
+            assertThat(Money.franc(15), `is`(five.times(3)))
         }
 
         @Test
         @DisplayName("프랑 동등성 테스트")
         fun testFrancEquality() {
-            assertThat(Franc(5), `is`(Franc(5)))
-            assertThat(Franc(5), not(Franc(6)))
+            assertThat(Money.franc(5), `is`(Franc(5)))
+            assertThat(Money.franc(5), not(Franc(6)))
         }
     }
 
     @Test
     @DisplayName("화폐 구분 테스트")
     fun testMoneyEquality(){
-        assertThat(Franc(5), not(Dollar(5)))
+        assertThat(Money.franc(5), not(Money.dollar(5)))
     }
 }
