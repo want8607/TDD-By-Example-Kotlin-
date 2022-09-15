@@ -6,20 +6,13 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
 class ExampleUnitTest {
     @Test
     @DisplayName("달러 곱셈 테스트")
     fun testMultiplication() {
         val five : Dollar = Dollar(5)
-        var product : Dollar = five.times(2)
-        assertThat(10,`is`(product.amount))
-        product = five.times(3)
-        assertThat(15,`is`(product.amount))
+        assertThat(Dollar(10),`is`(five.times(2)))
+        assertThat(Dollar(15),`is`(five.times(3)))
     }
 
     @Test
