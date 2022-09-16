@@ -1,14 +1,14 @@
 package com.example.tdd
 
-open class Money(protected val amount: Int, protected val currency: String ) {
+open class Money(protected val amount: Int, protected val currency: String): Expression {
 
     companion object {
         fun dollar(amount: Int): Money {
-            return Money(amount,"USD")
+            return Money(amount, "USD")
         }
 
         fun franc(amount: Int): Money {
-            return Money(amount,"CHF")
+            return Money(amount, "CHF")
         }
     }
 
@@ -17,9 +17,13 @@ open class Money(protected val amount: Int, protected val currency: String ) {
         return amount == money.amount && currency() == money.currency()
     }
 
-    open fun times(multiplier: Int): Money {
-        return Money(amount * multiplier,currency)
+    fun times(multiplier: Int): Money {
+        return Money(amount * multiplier, currency)
     }
 
-    open fun currency(): String = currency
+    fun currency(): String = currency
+
+    fun plus(addend: Money): Expression {
+        return Money(amount + addend.amount, currency)
+    }
 }
