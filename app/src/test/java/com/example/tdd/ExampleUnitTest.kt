@@ -58,10 +58,10 @@ class ExampleUnitTest {
         assertThat("CHF", `is`(Money.franc(1).currency()))
     }
 
-    @Test
-    @DisplayName("화폐와 Money 동등성 비교 테스트")
-    fun testDifferentClassEquality() {
-        assertThat(Money(10,"CHF"),`is`(Franc(10,"CHF")))
-        assertThat(Money(10,"USD"),`is`(Dollar(10,"USD")))
-    }
+//    @Test
+//    @DisplayName("화폐와 Money 동등성 비교 테스트")
+//    fun testDifferentClassEquality() {
+//        assertThat(Money(10,"CHF"),`is`(Franc(10,"CHF")))
+//        assertThat(Money(10,"USD"),`is`(Dollar(10,"USD")))
+//    }
 }
