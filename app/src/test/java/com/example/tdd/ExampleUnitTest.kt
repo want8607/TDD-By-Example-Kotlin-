@@ -94,9 +94,24 @@ class ExampleUnitTest {
 
     @Test
     @DisplayName("Reduce 타입 캐스팅 테스트")
-    fun testReduceMoney(){
+    fun testReduceMoney() {
         val bank: Bank = Bank()
-        val result: Money = bank.reduce(Money.dollar(1),"USD")
+        val result: Money = bank.reduce(Money.dollar(1), "USD")
         assertThat(Money.dollar(1), `is`(result))
+    }
+
+    @Test
+    @DisplayName("화폐 변환 테스트")
+    fun testReduceMoneyDifferentCurrency() {
+        val bank: Bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        val result: Money = bank.reduce(Money.franc(2), "USD")
+        assertThat(Money.dollar(1), `is`(result))
+    }
+
+    @Test
+    @DisplayName("환율 반환 값 테스트")
+    fun testIdentityRate() {
+        assertThat(1, `is`(Bank().rate("USD", "USD")))
     }
 }
