@@ -114,4 +114,15 @@ class ExampleUnitTest {
     fun testIdentityRate() {
         assertThat(1, `is`(Bank().rate("USD", "USD")))
     }
+
+    @Test
+    @DisplayName("화폐 덧셈 테스트")
+    fun testMixedAddition() {
+        val fiveBucks: Expression = Money.dollar(5)
+        val tenFranc: Expression = Money.franc(10)
+        val bank: Bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        val result: Money = bank.reduce(fiveBucks.plus(tenFranc), "USD")
+        assertThat(Money.dollar(10), `is`(result))
+    }
 }
