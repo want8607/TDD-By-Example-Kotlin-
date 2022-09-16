@@ -66,11 +66,37 @@ class ExampleUnitTest {
     @Test
     @DisplayName("덧셈 테스트")
     fun testSimpleAddition() {
-        val five : Money = Money.dollar(5)
+        val five: Money = Money.dollar(5)
         val sum: Expression = five.plus(five)
         val bank: Bank = Bank()
         val reduced: Money = bank.reduce(sum, "USD")
         assertThat(Money.dollar(10), `is`(reduced))
     }
 
+    @Test
+    @DisplayName("덧셈이 Sum을 리턴하는지 테스트")
+    fun testPlusReturnSum() {
+        val five: Money = Money.dollar(5)
+        val result: Expression = five.plus(five)
+        val sum: Sum = result as Sum
+        assertThat(five, `is`(sum.augend))
+        assertThat(five, `is`(sum.addend))
+    }
+
+    @Test
+    @DisplayName("Reduce,Sum의 호환 테스트")
+    fun testReduceSum() {
+        val sum: Expression = Sum(Money.dollar(3), Money.dollar(4))
+        val bank: Bank = Bank()
+        val result: Money = bank.reduce(sum, "USD")
+        assertThat(Money.dollar(7), `is`(result))
+    }
+
+    @Test
+    @DisplayName("Reduce 타입 캐스팅 테스트")
+    fun testReduceMoney(){
+        val bank: Bank = Bank()
+        val result: Money = bank.reduce(Money.dollar(1),"USD")
+        assertThat(Money.dollar(1), `is`(result))
+    }
 }

@@ -1,6 +1,6 @@
 package com.example.tdd
 
-open class Money(protected val amount: Int, protected val currency: String): Expression {
+open class Money(val amount: Int, val currency: String) : Expression {
 
     companion object {
         fun dollar(amount: Int): Money {
@@ -24,6 +24,10 @@ open class Money(protected val amount: Int, protected val currency: String): Exp
     fun currency(): String = currency
 
     fun plus(addend: Money): Expression {
-        return Money(amount + addend.amount, currency)
+        return Sum(this, addend)
+    }
+
+    override fun reduce(to: String): Money{
+        return this
     }
 }
