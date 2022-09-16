@@ -1,7 +1,3 @@
 package com.example.tdd
 
-class Franc(amount: Int) : Money(amount) {
-    override fun times(multiplier: Int): Money {
-        return Franc(amount * multiplier)
-    }
-}
+class Franc(amount: Int, currency: String) : Money(amount, currency)

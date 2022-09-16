@@ -40,14 +40,28 @@ class ExampleUnitTest {
         @Test
         @DisplayName("프랑 동등성 테스트")
         fun testFrancEquality() {
-            assertThat(Money.franc(5), `is`(Franc(5)))
-            assertThat(Money.franc(5), not(Franc(6)))
+            assertThat(Money.franc(5), `is`(Money.franc(5)))
+            assertThat(Money.franc(5), not(Money.franc(6)))
         }
     }
 
     @Test
     @DisplayName("화폐 구분 테스트")
-    fun testMoneyEquality(){
+    fun testMoneyEquality() {
         assertThat(Money.franc(5), not(Money.dollar(5)))
+    }
+
+    @Test
+    @DisplayName("통화 개념 테스트")
+    fun testCurrency() {
+        assertThat("USD", `is`(Money.dollar(1).currency()))
+        assertThat("CHF", `is`(Money.franc(1).currency()))
+    }
+
+    @Test
+    @DisplayName("화폐와 Money 동등성 비교 테스트")
+    fun testDifferentClassEquality() {
+        assertThat(Money(10,"CHF"),`is`(Franc(10,"CHF")))
+        assertThat(Money(10,"USD"),`is`(Dollar(10,"USD")))
     }
 }
