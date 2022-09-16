@@ -2,6 +2,7 @@ package com.example.tdd
 
 import org.hamcrest.CoreMatchers.*
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -125,4 +126,35 @@ class ExampleUnitTest {
         val result: Money = bank.reduce(fiveBucks.plus(tenFranc), "USD")
         assertThat(Money.dollar(10), `is`(result))
     }
+
+    @Test
+    @DisplayName("Sum클래스 Plus함수 테스트")
+    fun testSumPlusMoney() {
+        val fiveBucks: Expression = Money.dollar(5)
+        val tenFranc: Expression = Money.franc(10)
+        val bank: Bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        val sum: Expression = Sum(fiveBucks, tenFranc).plus(fiveBucks)
+        val result: Money = bank.reduce(sum, "USD")
+        assertThat(Money.dollar(15), `is`(result))
+    }
+
+    @Test
+    @DisplayName("Sum클래스 time함수 테스트")
+    fun testSumTimes() {
+        val fiveBucks: Expression = Money.dollar(5)
+        val tenFranc: Expression = Money.franc(10)
+        val bank: Bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        val sum: Expression = Sum(fiveBucks, tenFranc).times(2)
+        val result: Money = bank.reduce(sum, "USD")
+        assertThat(Money.dollar(20), `is`(result))
+    }
+
+//    @Test
+//    @DisplayName("$5+$5에서 Money반환하기")
+//    fun testPlusSameCurrencyReturnsMoney() {
+//        val sum: Expression = Money.dollar(1).plus(Money.dollar(1))
+//        assertTrue(sum is Money)
+//    }
 }

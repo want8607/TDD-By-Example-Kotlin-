@@ -17,7 +17,7 @@ open class Money(val amount: Int, val currency: String) : Expression {
         return amount == money.amount && currency() == money.currency()
     }
 
-    fun times(multiplier: Int): Expression {
+    override fun times(multiplier: Int): Expression {
         return Money(amount * multiplier, currency)
     }
 
